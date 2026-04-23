@@ -168,9 +168,9 @@ function StageController({ refs }) {
     const tgt = {
       provocation: smoothstep(p, 0.02, 0.2) * (1 - smoothstep(p, 0.22, 0.34)),
       entropy: smoothstep(p, 0.14, 0.3) * (1 - smoothstep(p, 0.34, 0.48)),
-      eventHorizon: smoothstep(p, 0.3, 0.46) * (1 - smoothstep(p, 0.48, 0.6)),
-      harmony: smoothstep(p, 0.42, 0.56) * (1 - smoothstep(p, 0.58, 0.68)),
-      cognitive: smoothstep(p, 0.56, 0.72) * (1 - smoothstep(p, 0.76, 0.86)),
+      eventHorizon: smoothstep(p, 0.3, 0.44) * (1 - smoothstep(p, 0.46, 0.52)),
+      harmony: smoothstep(p, 0.42, 0.52) * (1 - smoothstep(p, 0.54, 0.6)),
+      cognitive: smoothstep(p, 0.62, 0.74) * (1 - smoothstep(p, 0.78, 0.86)),
       sovereignty: smoothstep(p, 0.68, 0.82) * (1 - smoothstep(p, 0.86, 0.94)),
       engine: smoothstep(p, 0.78, 0.88) * (1 - smoothstep(p, 0.9, 0.96)),
       contactsFade: 1 - smoothstep(p, 0.9, 0.97),
@@ -320,7 +320,7 @@ export default function Experience() {
       </group>
 
       <group ref={refs.eventHorizonGroup}>
-        <DigitalDust count={800} radius={6} color={'#7B61FF'} size={1.0} breath={0.6} />
+        <DigitalDust count={400} radius={6} color={'#7B61FF'} size={1.0} breath={0.6} />
         <LightBeam
           position={[0, 0, -6]}
           rotation={[Math.PI / 2, 0, 0]}
@@ -333,7 +333,7 @@ export default function Experience() {
 
       <group ref={refs.harmonyGroup} position={[0, 0, -9]} scale={0.72}>
         <HarmonyGrid />
-        <DigitalDust count={380} radius={8} color={'#00D1FF'} size={0.8} breath={0.5} />
+        <DigitalDust count={200} radius={8} color={'#00D1FF'} size={0.8} breath={0.5} />
       </group>
 
       <group ref={refs.cognitiveGroup}>

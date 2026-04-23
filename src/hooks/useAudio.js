@@ -342,11 +342,9 @@ export default function useAudio() {
       startedRef.current = true;
     };
 
-    const onFirst = () => start();
-    window.addEventListener('pointerdown', onFirst);
-    window.addEventListener('keydown', onFirst);
-    window.addEventListener('click', onFirst);
-    window.addEventListener('touchstart', onFirst, { passive: true });
+    // Audio only starts when the user explicitly clicks the SOUND toggle.
+    // (No auto-start on first gesture — the button is the single source of truth.)
+    const onFirst = () => {};
     window.__prismStartAudio = () => {
       start();
       if (ctxRef.current && ctxRef.current.state === 'suspended') {

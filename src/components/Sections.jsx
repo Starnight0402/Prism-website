@@ -61,7 +61,7 @@ export default function Sections() {
       <section className="section tall align-center">
         <div className="card center narrow">
           <div className="eyebrow red" data-fade><span className="dot" />02 · Chaos</div>
-          <h2 className="display" data-reveal>Operations don’t fail loudly. They fail silently.</h2>
+          <h2 className="display" data-reveal>Operations don’t fall loudly. They fail silently.</h2>
           <p className="sub" data-fade>
             Missed SOPs. Inconsistent execution. Small errors repeated daily. These don’t show up clearly—until they become real losses. Prism Intelligence surfaces issues early, before they scale.
           </p>
