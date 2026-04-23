@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import logoUrl from '../../logo.png';
 
 /**
  * Section 0 — Singularity preloader.
@@ -127,7 +128,7 @@ export default function Preloader({ onDone }) {
 
   return (
     <div className={`preloader ${done ? 'gone' : ''}`}>
-      <img src="/logo.png" alt="PRISM INTELLIGENCE" className="preloader-logo" />
+      <img src={logoUrl} alt="PRISM INTELLIGENCE" className="preloader-logo" />
       <canvas ref={ref} />
       <div className="label" style={{ position: 'absolute', bottom: '12vh' }}>
         {done ? 'SYSTEM READY' : 'BOOTING INTELLIGENCE…'}

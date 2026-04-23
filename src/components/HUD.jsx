@@ -1,5 +1,6 @@
 import React from 'react';
 import { useScrollProgress } from '../hooks/useScroll';
+import logoUrl from '../../logo.png';
 
 const STAGES = [
   'OVERVIEW',
@@ -37,7 +38,7 @@ export default function HUD() {
   return (
     <div className="hud" aria-hidden="true">
       <div className="tl">
-        <span className="logo-stamp"><img src="/logo.png" alt="PRISM INTELLIGENCE" className="hud-logo" /></span>
+        <span className="logo-stamp"><img src={logoUrl} alt="PRISM INTELLIGENCE" className="hud-logo" /></span>
         <div className="line soft">● {STATES[idx]}</div>
       </div>
       <div className="tr">
