@@ -372,6 +372,18 @@ p.sub {
   border-bottom-color: var(--violet);
 }
 .contact-form button { margin-top: 6px; justify-self: start; }
+.contact-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.form-feedback {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  padding: 10px 14px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+.form-success { background: rgba(120,255,180,0.08); color: #7affa8; border: 1px solid rgba(120,255,180,0.2); }
+.form-error   { background: rgba(255,100,100,0.08);  color: #ff8080;  border: 1px solid rgba(255,100,100,0.2); }
 
 .contact-meta {
   margin-top: 48px;

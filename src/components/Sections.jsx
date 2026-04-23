@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sovereignty from './Sovereignty';
 
+// Get your free key at https://web3forms.com — enter any email, click "Create Access Key"
+const WEB3FORMS_KEY = 'dbb1b50d-03f9-40f3-b958-690287029745';
+
 export default function Sections() {
+  const [formStatus, setFormStatus] = useState('idle'); // idle | submitting | success | error
+
+  async function handleContactSubmit(e) {
+    e.preventDefault();
+    setFormStatus('submitting');
+    const data = new FormData(e.target);
+    data.append('access_key', WEB3FORMS_KEY);
+    data.append('subject', 'New Demo Request — Prism Intelligence');
+    data.append('from_name', 'Prism Intelligence Website');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+      const json = await res.json();
+      if (json.success) {
+        setFormStatus('success');
+        e.target.reset();
+      } else {
+        setFormStatus('error');
+      }
+    } catch {
+      setFormStatus('error');
+    }
+    window.dispatchEvent(new CustomEvent('prism:ripple'));
+  }
+
   return (
     <div className="scroll-root">
       {/* 0 — Overview hero */}
@@ -228,7 +258,7 @@ export default function Sections() {
             Want to understand what’s really happening in your operations? We’ll show you.
           </p>
 
-          <form className="contact-form" data-fade onSubmit={(e) => { e.preventDefault(); window.dispatchEvent(new CustomEvent('prism:ripple')); }}>
+          <form className="contact-form" data-fade onSubmit={handleContactSubmit}>
             <label>
               <span>Name</span>
               <input type="text" name="name" autoComplete="name" required data-hoverable />
@@ -245,7 +275,15 @@ export default function Sections() {
               <span>Message</span>
               <textarea name="message" rows="3" required data-hoverable />
             </label>
-            <button type="submit" className="sv-btn" data-clink>Request Demo →</button>
+            <button type="submit" className="sv-btn" data-clink disabled={formStatus === 'submitting'}>
+              {formStatus === 'submitting' ? 'Sending…' : 'Request Demo →'}
+            </button>
+            {formStatus === 'success' && (
+              <p className="form-feedback form-success">Got it — we'll be in touch within 24 hours.</p>
+            )}
+            {formStatus === 'error' && (
+              <p className="form-feedback form-error">Something went wrong. Try emailing us directly.</p>
+            )}
           </form>
 
           <div className="contact-meta" data-fade>
