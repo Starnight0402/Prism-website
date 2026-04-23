@@ -366,9 +366,12 @@ export default function useAudio() {
         n.ctx.resume().catch(() => {});
       }
       const now = n.ctx.currentTime;
-      const target = enabled ? 0.082 : 0.0;
+      const cur = n.master.gain.value;
       n.master.gain.cancelScheduledValues(now);
-      n.master.gain.setTargetAtTime(target, now, 0.08);
+      // Hard-anchor the current value, then linear ramp — guarantees we
+      // actually reach 0 (setTargetAtTime only approaches asymptotically).
+      n.master.gain.setValueAtTime(cur, now);
+      n.master.gain.linearRampToValueAtTime(enabled ? 0.082 : 0.0, now + 0.15);
       return !!enabled;
     };
 

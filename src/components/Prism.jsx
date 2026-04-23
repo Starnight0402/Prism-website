@@ -68,15 +68,16 @@ export default function Prism({ position = [0, 0, 0], scale = 1, rotationSpeed =
     const breathe = 0.85 + 0.15 * Math.sin(state.clock.elapsedTime * 3.2);
     const g = glowIntensity.current * breathe;
 
-    // Baseline ambient glow so the prism is never "lights off" at the hero.
-    // Gentle breathing pulse layered over a soft constant.
-    const ambient = 0.28 + 0.08 * Math.sin(state.clock.elapsedTime * 1.4);
+    // Baseline ambient glow — only visible at the hero. Fades out after
+    // progress ~0.18 so it doesn't show as a white blob behind later stages.
+    const heroFade = 1 - ss(p, 0.15, 0.28);
+    const ambient = (0.28 + 0.08 * Math.sin(state.clock.elapsedTime * 1.4)) * heroFade;
     if (glowMat.current) {
       // Inner heart: ambient baseline + scroll-driven surge during beam entry
       glowMat.current.opacity = ambient + 0.7 * g;
     }
     if (coreMat.current) {
-      coreMat.current.opacity = 0.22 + 0.55 * g;
+      coreMat.current.opacity = 0.22 * heroFade + 0.55 * g;
     }
   });
 
