@@ -286,9 +286,6 @@ export default function Sections() {
             )}
           </form>
 
-          <div className="contact-meta" data-fade>
-            <div><span>Email</span><a href="mailto:hello@prismintelligence.in" data-clink>hello@prismintelligence.in</a></div>
-          </div>
 
           <div className="hint" data-fade style={{ marginTop: 28 }}>We’ll respond within 24 hours</div>
         </div>
